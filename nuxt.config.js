@@ -31,7 +31,13 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/color-mode'],
+  buildModules: [
+    '@nuxtjs/color-mode',
+    '@nuxtjs/style-resources',
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    'nuxt-clipboard',
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
