@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^2.1.1",
-    "@nuxtjs/style-resources": "^1.2.1",
     "chromedriver": "^96.0.0",
     "eslint-config-prettier": "^8.3.0",
     "nightwatch": "^1.7.12",
