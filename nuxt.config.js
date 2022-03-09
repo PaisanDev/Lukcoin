@@ -22,7 +22,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/style/style.sass', '~/assets/style/variable.sass'],
+  css: ['~/assets/style/style.sass'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: '~/plugins/apexchart.js', ssr: false }],
@@ -33,6 +33,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/color-mode',
+    '@nuxtjs/style-resources',
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     'nuxt-clipboard',
@@ -44,6 +45,7 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
 
     //https://www.npmjs.com/package/nuxt-clipboard
     'nuxt-clipboard',
