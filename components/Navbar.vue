@@ -66,6 +66,10 @@ a.nuxt-link-exact-active:hover
   width: 100%
   position: fixed
   z-index: 1
+  background: $color-bg
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.1)
+    -webkit-box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.1)
+    -moz-box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.1)
 
 .nav-logo
   height: 30px

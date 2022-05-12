@@ -13,7 +13,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
       {
         href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
         rel: 'stylesheet',
@@ -25,7 +25,10 @@ export default {
   css: ['~/assets/style/style.sass'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/apexchart.js', ssr: false }],
+  plugins: [
+    { src: '~/plugins/apexchart.js', ssr: false },
+    { src: '~/plugins/vue-carousel.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -49,6 +52,8 @@ export default {
 
     //https://www.npmjs.com/package/nuxt-clipboard
     'nuxt-clipboard',
+
+    //https://ssense.github.io/vue-carousel/guide/
   ],
 
   styleResources: {

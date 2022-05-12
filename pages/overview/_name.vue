@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import comment from '/store/commends.js'
 export default {
   data() {
     return {
@@ -66,44 +67,7 @@ export default {
           address: '0x1D229B958D5DDFca92146585a8711aECbE56F095',
         },
       ],
-      comments: [
-        {
-          type: 'Twitter',
-          name: 'name1aaaaa',
-          comment:
-            'comment somethingaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-          date: '25/2/2022',
-          time: '15:00AM',
-        },
-        {
-          type: 'Reddit',
-          name: 'name2',
-          comment: 'comment something',
-          date: '25/2/2022',
-          time: '15:00AM',
-        },
-        {
-          type: 'Twitter',
-          name: 'name3',
-          comment: 'comment something',
-          date: '25/2/2022',
-          time: '15:00AM',
-        },
-        {
-          type: 'Twitter',
-          name: 'name4',
-          comment: 'comment something',
-          date: '25/2/2022',
-          time: '15:00AM',
-        },
-        {
-          type: 'Reddit',
-          name: 'name5',
-          comment: 'comment something',
-          date: '25/2/2022',
-          time: '15:00AM',
-        },
-      ],
+      comments: comment,
       links: [
         { link: 'www.google.com', type: 'website' },
         { link: 'www.google.com', type: 'facebook' },

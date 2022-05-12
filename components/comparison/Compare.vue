@@ -26,9 +26,16 @@
     <b-row align-h="center" class="mb-5">
       <b-col cols="12" class="text-center my-4">
         <img
-          :src="require(`~/assets/images/${selectedToken.icon}`)"
+          :src="selectedToken.src"
           alt="Token Icon"
           height="50px"
+          v-if="selectedToken.src != ''"
+        />
+        <img
+          :src="require('~/assets/images/Logo.svg')"
+          alt="Token Icon"
+          height="50px"
+          v-if="selectedToken.src == ''"
         />
       </b-col>
       <b-col cols="12" class="text-center">
@@ -45,20 +52,20 @@
     <!-- Market Cap -->
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Market Cap </b-col>
-      <b-col cols="6" class="text-right"> ${{ selectedToken.price }} </b-col>
+      <b-col cols="6" class="text-right"> ${{ selectedToken.cap }} </b-col>
     </b-row>
 
     <!-- Trading Volume -->
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Trading Volume </b-col>
-      <b-col cols="6" class="text-right"> ${{ selectedToken.price }} </b-col>
+      <b-col cols="6" class="text-right"> ${{ selectedToken.volume }} </b-col>
     </b-row>
 
     <!-- Max Supply -->
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Max Supply </b-col>
       <b-col cols="6" class="text-right">
-        {{ selectedToken.price }}
+        {{ selectedToken.maxSupply }}
       </b-col>
     </b-row>
 
@@ -66,7 +73,7 @@
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Total Supply </b-col>
       <b-col cols="6" class="text-right">
-        {{ selectedToken.price }}
+        {{ selectedToken.totalSupply }}
       </b-col>
     </b-row>
 
@@ -83,20 +90,55 @@ export default {
   data() {
     return {
       searchSymbol: '',
-      selectedToken: { symbol: 'LUK', price: 0, icon: 'Logo.svg', link: '' },
-      tokens: [
-        { symbol: 'BTC', price: '1000', icon: 'Logo.svg' },
-        { symbol: 'ETH', price: '1000', icon: 'Logo.svg' },
-        { symbol: 'BNB', price: '1000', icon: 'Logo.svg' },
-        { symbol: 'SOL', price: '1000', icon: 'Logo.svg' },
-      ],
+      selectedToken: {
+        name: '',
+        symbol: 'Select Token',
+        price: '0',
+        cap: '0',
+        volume: '0',
+        maxSupply: '0',
+        totalSupply: '0',
+        score: '0',
+        src: '',
+      },
+      defaultData: {
+        name: '',
+        symbol: 'Select Token',
+        price: '0',
+        cap: '0',
+        volume: '0',
+        maxSupply: '0',
+        totalSupply: '0',
+        score: '0',
+        src: '',
+      },
     }
   },
+  props: {
+    tokens: Array,
+  },
+
   methods: {
     selectToken(event) {
-      if (event == '') {
-        this.selectedToken.symbol = 'LUK'
-      } else this.selectedToken.symbol = event
+      if (
+        event == '' ||
+        this.tokens.filter((get) => {
+          if (get.symbol == event) {
+            return get
+          }
+        })[0] == undefined
+      ) {
+        this.selectedToken = Object.assign({}, this.defaultData)
+      } else {
+        this.selectedToken = Object.assign(
+          {},
+          this.tokens.filter((get) => {
+            if (get.symbol == event) {
+              return get
+            }
+          })[0]
+        )
+      }
     },
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <b-row>
-    <b-col v-for="comment in comments" :key="comment.name" class="comment">
-      <div class="comment-wrapper shadow">
+    <!-- <b-col v-for="comment in comments" :key="comment.name" class="comment">
+      <div class="comment-wrapper">
         <div class="comment-user">
           <i
             class="fab fa-twitter comment-type d-inline"
@@ -22,12 +22,57 @@
           {{ comment.time }} - {{ comment.date }}
         </div>
       </div>
+    </b-col> -->
+    <b-col>
+      <client-only>
+        <carousel v-bind="options">
+          <slide v-for="comment in comments" :key="comment.name" class="p-3">
+            <div class="comment-wrapper">
+              <div class="comment-user">
+                <i
+                  class="fab fa-twitter comment-type d-inline"
+                  v-if="comment.type == 'Twitter'"
+                  style="color: #5ab8eb"
+                ></i>
+
+                <i
+                  class="fab fa-reddit comment-type d-inline"
+                  v-else-if="comment.type == 'Reddit'"
+                  style="color: #ff7653"
+                ></i>
+
+                <header class="ml-1 d-inline">{{ comment.name }}</header>
+              </div>
+              <div class="comment-comment">{{ comment.comment }}</div>
+              <div class="comment-date-time">
+                {{ comment.time }} - {{ comment.date }}
+              </div>
+            </div>
+          </slide>
+        </carousel>
+      </client-only>
     </b-col>
   </b-row>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      options: {
+        loop: true,
+        perPageCustom: [
+          [300, 1],
+          [570, 1],
+          [768, 2],
+          [1024, 3],
+          [1140, 4],
+          [1920, 5],
+        ],
+        paginationEnabled: false,
+      },
+    }
+  },
   props: {
     comments: [],
   },
@@ -41,6 +86,9 @@ export default {
     border: 1px #F1F1F1 solid
     padding: 10px
     background: $color-bg
+    box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.12)
+    -webkit-box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.12)
+    -moz-box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.12)
 
 .comment
   display: inline-block

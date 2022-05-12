@@ -16,11 +16,7 @@
         </tr>
         <tr class="table-row" v-for="i in data" :key="i.symbol">
           <td class="text-center">
-            <img
-              src="~/images/Logo.svg"
-              alt="project Logo"
-              class="project-icon"
-            />
+            <img :src="i.src" alt="project Logo" class="project-icon" />
           </td>
           <td class="hide-mobile-sm">{{ i.name }}</td>
           <td class="hide-mobile-md project-symbol">{{ i.symbol }}</td>

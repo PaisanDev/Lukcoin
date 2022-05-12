@@ -11,17 +11,31 @@
 
     <b-row>
       <b-col cols="12" sm="12" md="6" class="mb-3">
-        <ComparisonCompare class="mx-auto" />
+        <ComparisonCompare class="mx-auto" :tokens="tokens" />
       </b-col>
-      <b-col cols="12" sm="12" md="6" class="mb-3">
-        <ComparisonCompare class="mx-auto" />
+      <b-col cols="12" sm="12" md="6" class="mb-5">
+        <ComparisonCompare class="mx-auto" :tokens="tokens" />
       </b-col>
     </b-row>
+    <!-- <b-row>
+      <b-col cols="12" class="mb-3">
+        <Nuxt-link to="/Comparison/Advanced" class="sm-nav-link">
+          Advanced Comparison
+        </Nuxt-link></b-col
+      >
+    </b-row> -->
   </div>
 </template>
 
 <script>
-export default {}
+import data from '/store/data.js'
+export default {
+  data() {
+    return {
+      tokens: data,
+    }
+  },
+}
 </script>
 
 <style lang="sass" scoped>
