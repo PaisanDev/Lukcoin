@@ -1,32 +1,9 @@
 <template>
   <b-row>
-    <!-- <b-col v-for="comment in comments" :key="comment.name" class="comment">
-      <div class="comment-wrapper">
-        <div class="comment-user">
-          <i
-            class="fab fa-twitter comment-type d-inline"
-            v-if="comment.type == 'Twitter'"
-            style="color: #5ab8eb"
-          ></i>
-
-          <i
-            class="fab fa-reddit comment-type d-inline"
-            v-else-if="comment.type == 'Reddit'"
-            style="color: #ff7653"
-          ></i>
-
-          <header class="ml-1 d-inline">{{ comment.name }}</header>
-        </div>
-        <div class="comment-comment">{{ comment.comment }}</div>
-        <div class="comment-date-time">
-          {{ comment.time }} - {{ comment.date }}
-        </div>
-      </div>
-    </b-col> -->
     <b-col>
       <client-only>
         <carousel v-bind="options">
-          <slide v-for="comment in comments" :key="comment.name" class="p-3">
+          <slide v-for="comment in comments" :key="comment.text" class="p-3">
             <div class="comment-wrapper">
               <div class="comment-user">
                 <i
@@ -43,7 +20,7 @@
 
                 <header class="ml-1 d-inline">{{ comment.name }}</header>
               </div>
-              <div class="comment-comment">{{ comment.comment }}</div>
+              <div class="comment-comment">{{ comment.text }}</div>
               <div class="comment-date-time">
                 {{ comment.time }} - {{ comment.date }}
               </div>

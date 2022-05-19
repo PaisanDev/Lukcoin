@@ -3,32 +3,44 @@
     <span class="mr-auto">
       <header>Related Website</header>
       <article class="p-2">
-        <button class="w-100 shadow mb-2" v-for="i in links" :key="i.text">
-          <div v-if="i.type == 'facebook'">
-            <i class="fab fa-facebook"></i>
-            Facebook
-          </div>
+        <a :href="i.link" v-for="i in links" :key="i.text">
+          <button class="w-100 shadow mb-2">
+            <div v-if="i.type == 'facebook'">
+              <i class="fab fa-facebook"></i>
+              Facebook
+            </div>
 
-          <div v-else-if="i.type == 'twitter'">
-            <i class="fab fa-twitter"></i>
-            Twitter
-          </div>
+            <div v-else-if="i.type == 'twitter'">
+              <i class="fab fa-twitter"></i>
+              Twitter
+            </div>
 
-          <div v-else-if="i.type == 'telegram'">
-            <i class="fab fa-telegram"></i>
-            Telegram
-          </div>
+            <div v-else-if="i.type == 'reddit'">
+              <i class="fab fa-reddit"></i>
+              Reddit
+            </div>
 
-          <div v-else-if="i.type == 'discord'">
-            <i class="fab fa-discord"></i>
-            Discord
-          </div>
+            <div v-else-if="i.type == 'telegram'">
+              <i class="fab fa-telegram"></i>
+              Telegram
+            </div>
 
-          <div v-else-if="i.type == 'website'">
-            <i class="fas fa-broom"></i>
-            Official Website
-          </div>
-        </button>
+            <div v-else-if="i.type == 'discord'">
+              <i class="fab fa-discord"></i>
+              Discord
+            </div>
+
+            <div v-else-if="i.type == 'technical_doc'">
+              <i class="fas fa-file"></i>
+              Techinal Document
+            </div>
+
+            <div v-else-if="i.type == 'website'">
+              <i class="fas fa-broom"></i>
+              Official Website
+            </div>
+          </button>
+        </a>
       </article>
     </span>
   </div>

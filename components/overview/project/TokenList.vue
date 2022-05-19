@@ -3,29 +3,45 @@
     <table style="border-spacing: 0 10px; border-collapse: separate">
       <tbody>
         <tr>
-          <th class="text-center token-img"></th>
+          <th class="text-center token-img">CHAIN</th>
           <th class="token-name">SYMBOL</th>
           <th class="token-price">PRICE</th>
           <th class="token-address">ADDRESS</th>
         </tr>
-        <tr class="table-row" v-for="i in data" :key="i.symbol">
+        <tr class="table-row">
           <td class="text-center">
-            <img src="~/images/Logo.svg" alt="project Logo" />
+            <img
+              src="~/images/chain/BSC.png"
+              alt="Chain Logo"
+              v-if="chain == 'BNB'"
+            />
+
+            <img
+              src="~/images/chain/ETH.png"
+              alt="Chain Logo"
+              v-if="chain == 'Ethereum'"
+            />
+
+            <img
+              src="~/images/chain/Solana.png"
+              alt="Chain Logo"
+              v-if="chain == 'Solana'"
+            />
           </td>
-          <td class="token-name">{{ i.symbol }}</td>
+          <td class="token-name">{{ symbol }}</td>
           <td class="token-price">
-            <div>$ {{ i.price }}</div>
+            <div>$ {{ price }}</div>
           </td>
           <td class="token-address">
             <div
-              @click="copyAddress(i.address, 'address' + i.symbol)"
-              :id="'address' + i.symbol"
+              @click="copyAddress(address, 'address' + symbol)"
+              :id="'address' + symbol"
             >
-              {{ i.address }}
+              {{ address }}
             </div>
             <b-tooltip
-              :ref="'address' + i.symbol"
-              :target="'address' + i.symbol"
+              :ref="'address' + symbol"
+              :target="'address' + symbol"
               title="Copied!"
               triggers="click"
             ></b-tooltip>
@@ -39,7 +55,10 @@
 <script>
 export default {
   props: {
-    data: Array,
+    chain: '',
+    symbol: '',
+    price: '',
+    address: '',
   },
   methods: {
     copyAddress(getAddress, tooltipID) {

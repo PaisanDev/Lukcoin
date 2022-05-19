@@ -6,14 +6,14 @@
         Sentiment
       </header>
     </span>
-    <span class="score my-auto">3.5</span>
+    <span class="score my-auto">{{ data }}</span>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    date: '',
+    data: '',
   },
 }
 </script>

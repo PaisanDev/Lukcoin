@@ -7,7 +7,7 @@
       <tbody>
         <tr>
           <th class="text-center">#</th>
-          <th class="hide-mobile-sm">Project name</th>
+          <th class="hide-mobile-sm">Token name</th>
           <th class="hide-mobile-md project-symbol">Symbol</th>
           <th class="hide-mobile-md">Market Cap</th>
           <th class="hide-mobile-sm">Volume(24h)</th>

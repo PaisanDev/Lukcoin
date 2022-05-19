@@ -6,14 +6,14 @@
         Status
       </header>
     </span>
-    <span class="status my-auto">POSITIVE</span>
+    <span class="status my-auto">{{ data }}</span>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    date: '',
+    data: '',
   },
 }
 </script>

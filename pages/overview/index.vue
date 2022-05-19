@@ -32,14 +32,27 @@
 </template>
 
 <script>
-import data from '/store/data.js'
+// import data from '/store/data.js'
 import comment from '/store/commends.js'
 export default {
   data() {
     return {
-      sentiments: data,
+      sentiments: [],
       comments: comment,
     }
+  },
+  created() {
+    this.fetchSomething()
+  },
+  methods: {
+    async fetchSomething() {
+      await this.$axios
+        .$get('https://arainaknhawa.herokuapp.com/getOverview')
+        .then((e) => {
+          this.sentiments = e.data
+          // console.log(this.sentiments)
+        })
+    },
   },
 }
 </script>

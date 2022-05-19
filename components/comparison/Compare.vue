@@ -4,14 +4,13 @@
       <b-col cols="12">
         <div>
           <b-form-input
-            list="list"
             class="search-input"
             placeholder="Enter token name"
             v-model="searchSymbol"
             @change="selectToken($event)"
           ></b-form-input>
 
-          <datalist id="list">
+          <!-- <datalist id="list">
             <option
               v-for="token in tokens"
               :key="token.symbol"
@@ -19,7 +18,7 @@
             >
               {{ token.symbol }}
             </option>
-          </datalist>
+          </datalist> -->
         </div>
       </b-col>
     </b-row>
@@ -46,19 +45,19 @@
     <!-- Price -->
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Price </b-col>
-      <b-col cols="6" class="text-right"> ${{ selectedToken.price }} </b-col>
+      <b-col cols="6" class="text-right"> {{ selectedToken.price }} </b-col>
     </b-row>
 
     <!-- Market Cap -->
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Market Cap </b-col>
-      <b-col cols="6" class="text-right"> ${{ selectedToken.cap }} </b-col>
+      <b-col cols="6" class="text-right"> {{ selectedToken.cap }} </b-col>
     </b-row>
 
     <!-- Trading Volume -->
     <b-row align-h="center" class="mb-2">
       <b-col cols="6" class="text-left"> Trading Volume </b-col>
-      <b-col cols="6" class="text-right"> ${{ selectedToken.volume }} </b-col>
+      <b-col cols="6" class="text-right"> {{ selectedToken.volume }} </b-col>
     </b-row>
 
     <!-- Max Supply -->
@@ -79,7 +78,12 @@
 
     <b-row align-h="center" class="mb-2">
       <b-col cols="12" class="text-center">
-        <button class="viewProject-BTN">VISIT PROJECT</button>
+        <NuxtLink
+          :to="'/overview/' + selectedToken.symbol"
+          v-if="selectedToken.symbol != defaultData.symbol"
+        >
+          <button class="viewProject-BTN">VISIT PROJECT</button>
+        </NuxtLink>
       </b-col>
     </b-row>
   </div>
@@ -119,25 +123,56 @@ export default {
   },
 
   methods: {
+    async fetchData(symbol) {
+      await this.$axios
+        .$get(
+          'https://arainaknhawa.herokuapp.com/getToCompare/' +
+            symbol.toUpperCase()
+        )
+        .then((e) => {
+          console.log(e)
+          this.selectedToken.src = e.src
+          this.selectedToken.symbol = e.symbol
+          this.selectedToken.price = e.price.toLocaleString('en-UK', {
+            style: 'currency',
+            currency: 'USD',
+          })
+          this.selectedToken.cap = e.cap.toLocaleString('en-UK', {
+            style: 'currency',
+            currency: 'USD',
+          })
+          this.selectedToken.volume = e.volume.toLocaleString('en-UK', {
+            style: 'currency',
+            currency: 'USD',
+          })
+          this.selectedToken.maxSupply = e.maxSupply.toLocaleString()
+          this.selectedToken.totalSupply = e.totalSupply.toLocaleString()
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    },
     selectToken(event) {
       if (
-        event == '' ||
-        this.tokens.filter((get) => {
-          if (get.symbol == event) {
-            return get
-          }
-        })[0] == undefined
+        event == ''
+        // event == '' ||
+        // this.tokens.filter((get) => {
+        //   if (get.symbol == event) {
+        //     return get
+        //   }
+        // })[0] == undefined
       ) {
         this.selectedToken = Object.assign({}, this.defaultData)
       } else {
-        this.selectedToken = Object.assign(
-          {},
-          this.tokens.filter((get) => {
-            if (get.symbol == event) {
-              return get
-            }
-          })[0]
-        )
+        // this.selectedToken = Object.assign(
+        //   {},
+        //   this.tokens.filter((get) => {
+        //     if (get.symbol == event) {
+        //       return get
+        //     }
+        //   })[0]
+        // )
+        this.fetchData(event)
       }
     },
   },

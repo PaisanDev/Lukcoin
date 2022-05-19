@@ -5,14 +5,16 @@
       <span class="brand ml-3">LUK COIN</span>
     </b-row>
     <b-row class="discription mb-3"
-      >Explore project in blockchain economy</b-row
+      >Explore cryptocurrency in blockchain economy</b-row
     >
     <b-row>
       <b-col>
         <div class="search">
           <i class="fas fa-search" />
-          <input type="text" placeholder="Search...." />
-          <button class="test">Search</button>
+          <input type="text" placeholder="Search...." v-model="searchData" />
+          <NuxtLink :to="'/overview/' + searchData.toUpperCase()">
+            <button class="test">Search</button>
+          </NuxtLink>
         </div>
       </b-col>
     </b-row>
@@ -20,7 +22,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+  // async asyncData({ $axios }) {
+  //   let { data } = await $axios.get('https://arainaknhawa.herokuapp.com/')
+  //   console.log(data)
+  // },
+
+  data() {
+    return {
+      searchData: '',
+    }
+  },
+}
 </script>
 
 <style lang="sass" scoped>

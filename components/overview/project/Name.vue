@@ -1,14 +1,14 @@
 <template>
   <div class="name-wrapper shadow">
     <span>
-      <img
-        :src="require('~/assets/images/' + img)"
-        alt="Project Logo"
-        class=""
-      />
-      <header>Project Name</header>
-      <br />
-      {{ name }}
+      <b-row>
+        <b-col cols="3"><img :src="img" alt="Token Logo" class="" /></b-col>
+        <b-col
+          ><header>Token Name</header>
+          <br />
+          {{ name }}</b-col
+        >
+      </b-row>
     </span>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
 .name-wrapper span img
     height: 40px
     margin: 5px 10px 0 0
-    float: left
+    // float: left
 
 .name-wrapper span header
     display: inline

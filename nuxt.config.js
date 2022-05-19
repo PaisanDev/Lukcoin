@@ -49,7 +49,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-
     //https://www.npmjs.com/package/nuxt-clipboard
     'nuxt-clipboard',
 
@@ -63,8 +62,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    // proxy: true
   },
 
   alias: {
