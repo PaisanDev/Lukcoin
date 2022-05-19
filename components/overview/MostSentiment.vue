@@ -20,8 +20,22 @@
           </td>
           <td class="hide-mobile-sm">{{ i.name }}</td>
           <td class="hide-mobile-md project-symbol">{{ i.symbol }}</td>
-          <td class="hide-mobile-md">$ {{ i.cap }}</td>
-          <td class="hide-mobile-sm">$ {{ i.volume }}</td>
+          <td class="hide-mobile-md">
+            {{
+              i.cap.toLocaleString('en-UK', {
+                style: 'currency',
+                currency: 'USD',
+              })
+            }}
+          </td>
+          <td class="hide-mobile-sm">
+            {{
+              i.volume.toLocaleString('en-UK', {
+                style: 'currency',
+                currency: 'USD',
+              })
+            }}
+          </td>
           <td>{{ i.score }}</td>
           <td class="text-right pr-3">
             <NuxtLink :to="'/overview/' + i.symbol">

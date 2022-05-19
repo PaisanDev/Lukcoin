@@ -3,7 +3,7 @@
     <span class="mr-auto">
       <header>Related Website</header>
       <article class="p-2">
-        <a :href="i.link" v-for="i in links" :key="i.text">
+        <a :href="i.link" v-for="i in links" :key="i.text" target="_blank">
           <button class="w-100 shadow mb-2">
             <div v-if="i.type == 'facebook'">
               <i class="fab fa-facebook"></i>

@@ -68,7 +68,7 @@ export default {
         .then((e) => {
           this.data = e.info
           this.comments = e.comment
-          console.log(e)
+          // console.log(e)
         })
         .catch((e) => {
           console.log(e)

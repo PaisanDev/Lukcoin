@@ -57,7 +57,7 @@ export default {
   props: {
     chain: '',
     symbol: '',
-    price: '',
+    price: 0,
     address: '',
   },
   methods: {
