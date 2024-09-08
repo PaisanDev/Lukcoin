@@ -3,29 +3,63 @@
     <table style="border-spacing: 0 10px; border-collapse: separate">
       <tbody>
         <tr>
-          <th class="text-center token-img">CHAIN</th>
-          <th class="token-name">SYMBOL</th>
-          <th class="token-price">PRICE</th>
-          <th class="token-address">ADDRESS</th>
+          <th class="text-center token-img">
+            CHAIN
+            <i
+              class="far fa-question-circle"
+              v-b-tooltip.hover
+              title="A section for displaying token deployed chain."
+            />
+          </th>
+          <th class="token-name">
+            SYMBOL
+            <i
+              class="far fa-question-circle"
+              v-b-tooltip.hover
+              title="Symbol or Short signature text of the token name."
+            />
+          </th>
+          <th class="token-price">
+            PRICE
+            <i
+              class="far fa-question-circle"
+              v-b-tooltip.hover
+              title="A section for displaying current price the token."
+            />
+          </th>
+          <th class="token-address">
+            ADDRESS
+            <i
+              class="far fa-question-circle"
+              v-b-tooltip.hover
+              title="A section for displaying token official address reference from website Coingecko (An address can click to copy to prevent miss typing and convenient use)"
+            />
+          </th>
         </tr>
         <tr class="table-row">
           <td class="text-center">
             <img
               src="~/images/chain/BSC.png"
               alt="Chain Logo"
-              v-if="chain == 'BNB'"
+              v-if="chain == 'binance-smart-chain'"
             />
 
             <img
               src="~/images/chain/ETH.png"
               alt="Chain Logo"
-              v-if="chain == 'Ethereum'"
+              v-if="chain == 'ethereum'"
             />
 
             <img
               src="~/images/chain/Solana.png"
               alt="Chain Logo"
-              v-if="chain == 'Solana'"
+              v-if="chain == 'solana'"
+            />
+
+            <img
+              src="~/images/chain/Wanchain.png"
+              alt="Chain Logo"
+              v-if="chain == 'wanchain'"
             />
           </td>
           <td class="token-name">{{ symbol }}</td>

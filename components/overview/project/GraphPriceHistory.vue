@@ -1,18 +1,18 @@
 <template>
   <div class="score-wrapper shadow h-100">
     <header>
-      Sentiment Analysis
+      Coin predicted price
       <i
         class="far fa-question-circle"
         v-b-tooltip.hover
-        title="A section for displaying history of past sentiment analysis result from our trained model"
+        title="A section for displaying history of past coin price prediction result from our trained model"
       />
     </header>
     <div class="mt-4">
       <b-table striped sticky-header="450px" :items="data"></b-table>
     </div>
 
-    <p v-if="data == null">Unavailable to find history</p>
+    <p v-if="data == null">Unavailable to find</p>
   </div>
 </template>
 

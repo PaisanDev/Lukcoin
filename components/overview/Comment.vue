@@ -2,31 +2,37 @@
   <b-row>
     <b-col>
       <client-only>
-        <carousel v-bind="options">
-          <slide v-for="comment in comments" :key="comment.text" class="p-3">
-            <div class="comment-wrapper">
-              <div class="comment-user">
-                <i
-                  class="fab fa-twitter comment-type d-inline"
-                  v-if="comment.type == 'Twitter'"
-                  style="color: #5ab8eb"
-                ></i>
+        <div class="">
+          <carousel v-bind="options">
+            <slide v-for="comment in comments" :key="comment.text" class="p-3">
+              <div class="comment-wrapper">
+                <div class="comment-user">
+                  <i
+                    class="fab fa-twitter comment-type d-inline"
+                    v-if="comment.type == 'Twitter'"
+                    style="color: #5ab8eb"
+                  ></i>
 
-                <i
-                  class="fab fa-reddit comment-type d-inline"
-                  v-else-if="comment.type == 'Reddit'"
-                  style="color: #ff7653"
-                ></i>
+                  <i
+                    class="fab fa-reddit comment-type d-inline"
+                    v-else-if="comment.type == 'Reddit'"
+                    style="color: #ff7653"
+                  ></i>
 
-                <header class="ml-1 d-inline">{{ comment.name }}</header>
+                  <header class="ml-1 d-inline">
+                    <!-- {{ comment.name }} -->
+                    Anonymous
+                  </header>
+                </div>
+                <div class="comment-comment">{{ comment.data[0] }}</div>
+                <div class="comment-date-time">
+                  <!-- {{ comment.time }} -  -->
+                  {{ comment.date }}
+                </div>
               </div>
-              <div class="comment-comment">{{ comment.text }}</div>
-              <div class="comment-date-time">
-                {{ comment.time }} - {{ comment.date }}
-              </div>
-            </div>
-          </slide>
-        </carousel>
+            </slide>
+          </carousel>
+        </div>
       </client-only>
     </b-col>
   </b-row>
@@ -57,8 +63,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
 .comment-wrapper
-    height: 180px
     border-radius: 10px
     border: 1px #F1F1F1 solid
     padding: 10px

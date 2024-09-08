@@ -1,23 +1,11 @@
 <template>
   <div class="search-wrapper">
     <b-row class="mb-4">
-      <img src="~/images/Logo.svg" alt="Logo" class="logo" />
-      <span class="brand ml-3">LUK COIN</span>
+      <span class="brand ml-3">Unavaliable to find this cryptocurrency</span>
     </b-row>
     <b-row class="discription mb-3"
-      >Explore cryptocurrency in blockchain economy</b-row
+      ><NuxtLink to="/">RETURN TO HOMEPAGE</NuxtLink></b-row
     >
-    <b-row>
-      <b-col>
-        <div class="search">
-          <i class="fas fa-search" />
-          <input type="text" placeholder="Search...." v-model="searchData" />
-          <NuxtLink :to="'/overview/' + searchData.toLowerCase()">
-            <button class="test">Search</button>
-          </NuxtLink>
-        </div>
-      </b-col>
-    </b-row>
   </div>
 </template>
 

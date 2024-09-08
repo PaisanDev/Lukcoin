@@ -1,7 +1,14 @@
 <template>
   <div class="link-wrapper shadow h-100">
     <span class="mr-auto">
-      <header>Related Website</header>
+      <header>
+        Related Website
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="A section for displaying all links from token creator official reference from coingecko website"
+        />
+      </header>
       <article class="p-2">
         <a :href="i.link" v-for="i in links" :key="i.text" target="_blank">
           <button class="w-100 shadow mb-2">
@@ -35,7 +42,7 @@
               Techinal Document
             </div>
 
-            <div v-else-if="i.type == 'website'">
+            <div v-else-if="i.type == 'homepage'">
               <i class="fas fa-broom"></i>
               Official Website
             </div>
@@ -65,6 +72,10 @@ export default {
     display: inline
     font-size: 20px
     font-weight: 350
+    color: $color-ascent
+
+.link-wrapper span header i
+    font-size: 16px
     color: $color-ascent
 
 .link-wrapper span article button

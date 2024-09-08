@@ -16,13 +16,15 @@
         </tr>
         <tr class="table-row" v-for="i in data" :key="i.symbol">
           <td class="text-center">
-            <img :src="i.src" alt="project Logo" class="project-icon" />
+            <img :src="i.data.pic" alt="project Logo" class="project-icon" />
           </td>
-          <td class="hide-mobile-sm">{{ i.name }}</td>
-          <td class="hide-mobile-md project-symbol">{{ i.symbol }}</td>
+          <td class="hide-mobile-sm">{{ i.data.name }}</td>
+          <td class="hide-mobile-md project-symbol">
+            {{ i.data.symbol.toUpperCase() }}
+          </td>
           <td class="hide-mobile-md">
             {{
-              i.cap.toLocaleString('en-UK', {
+              i.data.marketcap.toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD',
               })
@@ -30,15 +32,16 @@
           </td>
           <td class="hide-mobile-sm">
             {{
-              i.volume.toLocaleString('en-UK', {
+              i.data.volume.toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD',
               })
             }}
           </td>
-          <td>{{ i.score }}</td>
+          <td class="positive" v-if="i.data.sentiment == 1">Positive</td>
+          <td class="negative" v-if="i.data.sentiment == 0">Negative</td>
           <td class="text-right pr-3">
-            <NuxtLink :to="'/overview/' + i.symbol">
+            <NuxtLink :to="'/overview/' + i.data.symbol">
               <button class="project-view-btn">
                 <i class="fas fa-search"></i>
               </button>
@@ -59,6 +62,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.positive
+  color: $color-primary
+.negative
+  color: #eb3434
+
 .MostSentiment-wrapper
     padding: 20px
     background: $color-bg

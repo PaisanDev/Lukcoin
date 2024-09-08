@@ -2,17 +2,24 @@
   <div class="status-wrapper shadow">
     <span class="mr-auto">
       <header>
-        Sentiment <br />
-        Status
+        Coin price <br />
+        predict
         <i
           class="far fa-question-circle"
           v-b-tooltip.hover
-          title="A section for displaying a daily sentiment status from our model (Positive status means social media references this token in a positive way, Negative status means social media references this token in a negative way)"
+          title="A section for displaying token price prediction percent (Up means the worth of this token going to increase tomorrow, Down means the worth of this token going to decrease tomorrow)"
         />
       </header>
     </span>
-    <span class="status my-auto positive" v-if="data == 1">Positive</span>
-    <span class="status my-auto negative" v-if="data == 0">Negative</span>
+    <span class="status my-auto positive" v-if="status == 'Up'">{{
+      status + ' ' + data + ' ' + '%'
+    }}</span>
+    <span class="status my-auto negative" v-if="status == 'Down'">{{
+      status + ' ' + data + ' ' + '%'
+    }}</span>
+    <span class="status my-auto unpredicted" v-if="status == 'Unpredicted'">{{
+      status
+    }}</span>
   </div>
 </template>
 
@@ -20,6 +27,7 @@
 export default {
   props: {
     data: '',
+    status: '',
   },
 }
 </script>
@@ -39,9 +47,12 @@ export default {
     color: $color-ascent
     text-transform: uppercase
 
-.status-wrapper span header i
+.status-wrapper span i
+    display: inline
     font-size: 16px
+    font-weight: 350
     color: $color-ascent
+    text-transform: uppercase
 
 .status
   height: 40px
@@ -53,8 +64,12 @@ export default {
 
 .positive
   color: $color-primary
+
 .negative
   color: #eb3434
+
+.unpredicted
+  color: #f2cf30
 
 @media only screen and (max-width: $md-width)
   .status

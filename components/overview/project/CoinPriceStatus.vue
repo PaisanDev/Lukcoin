@@ -2,17 +2,17 @@
   <div class="status-wrapper shadow">
     <span class="mr-auto">
       <header>
-        Sentiment <br />
-        Status
-        <i
-          class="far fa-question-circle"
-          v-b-tooltip.hover
-          title="A section for displaying a daily sentiment status from our model (Positive status means social media references this token in a positive way, Negative status means social media references this token in a negative way)"
-        />
+        Coin Status <br />
+        Prediction
       </header>
     </span>
-    <span class="status my-auto positive" v-if="data == 1">Positive</span>
-    <span class="status my-auto negative" v-if="data == 0">Negative</span>
+    <span class="status my-auto positive" v-if="data == 'Up'">{{ data }}</span>
+    <span class="status my-auto negative" v-if="data == 'Down'">{{
+      data
+    }}</span>
+    <span class="status my-auto unpredicted" v-if="data == 'Unpredicted'">{{
+      data
+    }}</span>
   </div>
 </template>
 
@@ -39,10 +39,6 @@ export default {
     color: $color-ascent
     text-transform: uppercase
 
-.status-wrapper span header i
-    font-size: 16px
-    color: $color-ascent
-
 .status
   height: 40px
   line-height: 40px
@@ -53,8 +49,12 @@ export default {
 
 .positive
   color: $color-primary
+
 .negative
   color: #eb3434
+
+.unpredicted
+  color: #f2cf30
 
 @media only screen and (max-width: $md-width)
   .status

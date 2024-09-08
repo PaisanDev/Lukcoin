@@ -44,25 +44,75 @@
 
     <!-- Price -->
     <b-row align-h="center" class="mb-2">
-      <b-col cols="6" class="text-left"> Price </b-col>
+      <b-col cols="6" class="text-left">
+        Price
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="A current price of this token"
+      /></b-col>
       <b-col cols="6" class="text-right"> {{ selectedToken.price }} </b-col>
+    </b-row>
+    <b-row align-h="center" class="mb-2">
+      <b-col cols="6" class="text-left">
+        Price Predict
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="Shows the likelihood that the value of the token will increase or decrease."
+      /></b-col>
+      <b-col cols="6" class="text-right">
+        {{ selectedToken.price_predict }}
+      </b-col>
     </b-row>
 
     <!-- Market Cap -->
     <b-row align-h="center" class="mb-2">
-      <b-col cols="6" class="text-left"> Market Cap </b-col>
-      <b-col cols="6" class="text-right"> {{ selectedToken.cap }} </b-col>
+      <b-col cols="6" class="text-left">
+        Market Cap
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="Show the token total value in the market"
+      /></b-col>
+      <b-col cols="6" class="text-right">
+        {{
+          selectedToken.cap.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })
+        }}
+      </b-col>
     </b-row>
 
     <!-- Trading Volume -->
     <b-row align-h="center" class="mb-2">
-      <b-col cols="6" class="text-left"> Trading Volume </b-col>
-      <b-col cols="6" class="text-right"> {{ selectedToken.volume }} </b-col>
+      <b-col cols="6" class="text-left">
+        Trading Volume
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="The volume of trade refers to the total number of shares or contracts exchanged between buyers and sellers"
+      /></b-col>
+      <b-col cols="6" class="text-right">
+        {{
+          selectedToken.volume.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })
+        }}
+      </b-col>
     </b-row>
 
     <!-- Max Supply -->
     <b-row align-h="center" class="mb-2">
-      <b-col cols="6" class="text-left"> Max Supply </b-col>
+      <b-col cols="6" class="text-left">
+        Max Supply
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="The total amount of tokens hasn't been own"
+      /></b-col>
       <b-col cols="6" class="text-right">
         {{ selectedToken.maxSupply }}
       </b-col>
@@ -70,7 +120,13 @@
 
     <!-- Total Supply -->
     <b-row align-h="center" class="mb-2">
-      <b-col cols="6" class="text-left"> Total Supply </b-col>
+      <b-col cols="6" class="text-left">
+        Total Supply
+        <i
+          class="far fa-question-circle"
+          v-b-tooltip.hover
+          title="The total amount of tokens had been owned by holder"
+      /></b-col>
       <b-col cols="6" class="text-right">
         {{ selectedToken.totalSupply }}
       </b-col>
@@ -79,7 +135,7 @@
     <b-row align-h="center" class="mb-2">
       <b-col cols="12" class="text-center">
         <NuxtLink
-          :to="'/overview/' + selectedToken.symbol"
+          :to="'/overview/' + selectedToken.symbol.toLowerCase()"
           v-if="selectedToken.symbol != defaultData.symbol"
         >
           <button class="viewProject-BTN">VISIT PROJECT</button>
@@ -98,6 +154,7 @@ export default {
         name: '',
         symbol: 'Select Token',
         price: '0',
+        price_predict: '-',
         cap: '0',
         volume: '0',
         maxSupply: '0',
@@ -109,6 +166,7 @@ export default {
         name: '',
         symbol: 'Select Token',
         price: '0',
+        price_predict: '-',
         cap: '0',
         volume: '0',
         maxSupply: '0',
@@ -125,28 +183,31 @@ export default {
   methods: {
     async fetchData(symbol) {
       await this.$axios
-        .$get(
-          'https://arainaknhawa.herokuapp.com/getToCompare/' +
-            symbol.toUpperCase()
-        )
+        .$get('http://127.0.0.1:5000/getToCompare/' + symbol.toLowerCase())
         .then((e) => {
-          console.log(e)
-          this.selectedToken.src = e.src
-          this.selectedToken.symbol = e.symbol
+          this.selectedToken.src = e.pic
+          this.selectedToken.symbol = e.symbol.toUpperCase()
+
+          if (e.predict.status == 'Up' || e.predict.status == 'Down') {
+            this.selectedToken.price_predict =
+              e.predict.status + ' ' + e.predict.percent + ' ' + '%'
+          } else {
+            this.selectedToken.price_predict = e.predict.status
+          }
+
           this.selectedToken.price = e.price.toLocaleString('en-UK', {
             style: 'currency',
             currency: 'USD',
           })
-          this.selectedToken.cap = e.cap.toLocaleString('en-UK', {
-            style: 'currency',
-            currency: 'USD',
-          })
-          this.selectedToken.volume = e.volume.toLocaleString('en-UK', {
-            style: 'currency',
-            currency: 'USD',
-          })
-          this.selectedToken.maxSupply = e.maxSupply.toLocaleString()
-          this.selectedToken.totalSupply = e.totalSupply.toLocaleString()
+
+          this.selectedToken.cap = e.marketcap
+          this.selectedToken.volume = e.volume
+          this.selectedToken.maxSupply = e.max_supply
+            .toFixed(2)
+            .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+          this.selectedToken.totalSupply = e.total_supply
+            .toFixed(2)
+            .replace(/\d(?=(\d{3})+\.)/g, '$&,')
         })
         .catch((e) => {
           console.log(e)

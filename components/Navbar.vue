@@ -1,9 +1,12 @@
 <template>
   <div class="navbar">
-    <div>
-      <img src="~/images/Logo.svg" alt="Navbar Logo" class="nav-logo" />
-      <span class="nav-brand">Luk Coin</span>
-    </div>
+    <NuxtLink :to="'/'" class="nav-logo-link">
+      <div>
+        <img src="~/images/Logo.svg" alt="Navbar Logo" class="nav-logo" />
+        <span class="nav-brand">Luk Coin</span>
+      </div>
+    </NuxtLink>
+
     <div class="ml-auto">
       <div class="lg-menu">
         <Nuxt-link
@@ -74,6 +77,9 @@ a.nuxt-link-exact-active:hover
 .nav-logo
   height: 30px
   vertical-align: sub
+
+.nav-logo-link
+  text-decoration: none
 
 .nav-brand
   font-size: 25px

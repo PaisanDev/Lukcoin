@@ -2,9 +2,18 @@
   <div class="name-wrapper shadow">
     <span>
       <b-row>
-        <b-col cols="3"><img :src="img" alt="Token Logo" class="" /></b-col>
+        <b-col cols="3"
+          ><img :src="this.img" alt="Token Logo" class=""
+        /></b-col>
         <b-col
-          ><header>Token Name</header>
+          ><header>
+            Token Name
+            <i
+              class="far fa-question-circle"
+              v-b-tooltip.hover
+              title="A section for displaying the token name"
+            />
+          </header>
           <br />
           {{ name }}</b-col
         >
